@@ -5,6 +5,8 @@
       <menuitem name="Consultas" id="menu_1_list" parent="menu_root" sequence="1"/>
         <menuitem name="Programacion de Turnos" id="menu_turnos_list2" parent="menu_1_list" action="cad_prog_turno_action2" sequence="1"/>
         <menuitem name="Historia Clinica" id="menu_hist_3_list" parent="menu_1_list" action="hist_clinic_paciente" sequence="3"/>
+        <menuitem name="Registro Paciente" id="menu_datpac_4_list" parent="menu_1_list" action="cad_princ_paciente" sequence="4"/>
+
 
       <menuitem name="Movimientos Hospitalarios" id="model_movhosp_menu" parent="menu_root" sequence="2"/>
         <menuitem name="Hoja de Ingresos" id="menu_hoj_ingres_list" parent="model_movhosp_menu" action="mov_hospitalario" sequence="1"/>

@@ -33,6 +33,7 @@
         'data/sequenc.xml',
         'views/Programacion_Turnos.xml',
         'views/historia_clinica.xml',
+        'views/Datos_Principales_Paciente.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
