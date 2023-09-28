@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="hist_clinic_paciente" model="ir.actions.act_window">
+      <field name="name">Historia Clinica</field>
+      <field name="res_model">cad.datos.reg.turno</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('state', '=','confirm')]</field>
+    </record>
+
+  </data>
+</odoo>

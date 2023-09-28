@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_cad_prog_turno,cad_prog_turno_admin,model_cad_prog_turno,,1,1,1,1
+admin_cad_datos_reg_turno,cad_datos_reg_turno_admin,model_cad_datos_reg_turno,,1,1,1,1
+admin_paciente,cad_paciente,model_cad_paciente,,1,1,1,1
