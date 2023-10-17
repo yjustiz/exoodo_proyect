@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-    <menuitem name="CAD" id="menu_root" web_icon="Centro Atención Diabeticos/static/description/icon.png"/>
+    <menuitem name="CAD" id="menu_root" web_icon="centroatencion,static/description/icon.png"/>
       <menuitem name="Consultas" id="menu_1_list" parent="menu_root" sequence="1"/>
         <menuitem name="Programacion de Turnos" id="menu_turnos_list2" parent="menu_1_list" action="cad_prog_turno_action2" sequence="1"/>
-        <menuitem name="Historia Clinica" id="menu_hist_3_list" parent="menu_1_list" action="hist_clinic_paciente" sequence="3"/>
+                
+      <menuitem name="Registros" id="model_regitrs_menu" parent="menu_root" sequence="10"/>
+        <menuitem name="Registro Paciente" id="menu_datpac_4_list" parent="model_regitrs_menu" action="cad_princ_paciente" sequence="1"/>
+        <menuitem name="Historia Clinica" id="menu_hist_3_list" parent="model_regitrs_menu" action="hist_clinic_paciente" sequence="2"/>
 
-      <menuitem name="Movimientos Hospitalarios" id="model_movhosp_menu" parent="menu_root" sequence="2"/>
+      <menuitem name="Movimientos Hospitalarios" id="model_movhosp_menu" parent="menu_root" sequence="40"/>
         <menuitem name="Hoja de Ingresos" id="menu_hoj_ingres_list" parent="model_movhosp_menu" action="mov_hospitalario" sequence="1"/>
-        <menuitem name="Hoja de Egresos" id="menu_hoj_egres_list" parent="model_movhosp_menu" sequence="2"/>
+        <menuitem name="Hoja de Egresos" id="menu_hoj_egres_list" parent="model_movhosp_menu" action="mov_hospitalario_2" sequence="2"/>
 
       <menuitem name="Reportes" id="menu_report_2_list" parent="menu_root" sequence="5"/>
   </data>

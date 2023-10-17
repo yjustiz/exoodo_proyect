@@ -27,7 +27,7 @@ class HistoriaClinicaPaciente(models.Model):
    obesidad_debut = fields.Selection(string = "Obesidad al debut", selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])    
    
    #Antecedentes_Obstetricos
-   menarquia_edad = fields.Integer()
+   menarquia_edad = fields.Integer(string = 'Menarquia de Edad')
    embarazo = fields.Selection(string = 'Embarazo', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
    embarazo_cantidad = fields.Integer(string = 'Cantidad Embarazo')
    aborto_espontaneo = fields.Selection(string = 'Aborto Espontaneo', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
@@ -38,7 +38,7 @@ class HistoriaClinicaPaciente(models.Model):
    muerte_perinatal = fields.Selection(string = 'Muerte perinatal', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
    muerte_perinatal_cant = fields.Integer(string = 'Muerte perinatal Cantidad')
    menopausia = fields.Selection(string = 'Menopausia', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
-   menopausia_edad = fields.Integer(string = 'Menopausia edad')
+   menopausia_edad = fields.Integer(string = 'Menopausia edad', size = 2 )
    fecha_ultima_mestruacion = fields.Date(string = 'Fecha Ultima Menstruacion(FUM)')
    
    #Antecedentes_Familiares_Diabetes
@@ -53,17 +53,17 @@ class HistoriaClinicaPaciente(models.Model):
    comentario = fields.Char(size = 150)
    
    #Antecedente_Patologicos_Personales
-   hiperlipoproteinemia = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
-   hipertension_arterial = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
-   cardiopatia_isquemica = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
-   claudicacion_intermitente = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   hiperlipoproteinemia_p = fields.Selection(string = 'Hiperlipoproteinemia', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   hipertension_arterial_p = fields.Selection(string = 'Hipertensión Arterial', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   cardiopatia_isquemica_p = fields.Selection(string = 'Cardiopatía Isquemica', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   claudicacion_intermitente_p = fields.Selection(string = 'Claudicación Intermitente',selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
    otros = fields.Selection(string='Otros', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
    otros_especificar = fields.Char(string='Otros(especificar)', size = 150)
    
    #Antecedente_Patologicos_Familiares
-   hiperlipoproteinemia = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
-   hipertension_arterial = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
-   cardiopatia_isquemica = fields.Selection([('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   hiperlipoproteinemia_f = fields.Selection(string='Hiperlipoproteinemia', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   hipertension_arterial_f = fields.Selection(string='Hipertensión Arterial', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
+   cardiopatia_isquemica_f = fields.Selection(string='Cardiopatía Isquemica', selection=[('si', 'Si'), ('no', 'No'), ('no precisado', 'No Precisado')])
    
    #Habitos_Toxicos    
    habitos_toxico = fields.Selection(string = 'Hábitos Tóxico', selection=[('no fumador', 'No Fumador'), 
@@ -78,15 +78,16 @@ class HistoriaClinicaPaciente(models.Model):
                                ('semanal', 'Semanal'), ('diario', 'Diario'), ('mensual', 'Mensual'), 
                                ('frecuente', 'Frecuente')])
    #Tratamiento_Inicio
-   tratamiento_inicio = fields.Selection([('sólo dieta', 'Sólo dieta'), ('coh', 'COH'), ('insulina', 'Insulina'), 
+   tratamiento_inicio = fields.Selection(string = 'Tratamiento Al Inicio', selection=[('sólo dieta', 'Sólo dieta'), ('coh', 'COH'), ('insulina', 'Insulina'), 
                                    ('insulina+coh', 'Insulina+COH'), ('no precisado', 'No precisado'), ('no tenía', 'No tenía')])
    #tratamiento_inic_medicament = fields.Char(string = 'Tratamiento Inicio Medicamentos', size = 250)
-   año_comienzo = fields.Date()       
+   año_comienzo = fields.Date(string = 'Año de comienzo')       
    
    #Tratamiento_Actual
-   tratamiento_actual = fields.Selection([('sólo dieta', 'Sólo dieta'), ('coh', 'COH'), ('insulina', 'Insulina'), ('insulina+coh', 'Insulina+COH'), ('no precisado', 'No precisado')])
+   tratamiento_actual = fields.Selection(string = 'Tratamiento Actual', selection=[('sólo dieta', 'Sólo dieta'), ('coh', 'COH'), ('insulina', 'Insulina'), 
+                                          ('insulina+coh', 'Insulina+COH'), ('no precisado', 'No precisado')])
    #tratamiento_fin_medicament = fields.Char(string = 'Tratamiento Final Medicamentos', size = 250)
-   año_comienzo = fields.Date()
+   año_comienzo = fields.Date(string = 'Año de comienzo')
    
    #Sintomas_actuales
    sintoma_actuales = fields.Text(string = 'Síntomas actuales')
@@ -173,19 +174,32 @@ class HistoriaClinicaPaciente(models.Model):
    
    #Complicaciones
    vision_borrosa = fields.Selection(string = 'Visión Borrosa', selection=[('si', 'Si'), ('no', 'No')])
-   vision_ojo_derecho = fields.Selection(string = 'Vision Ojo Derecho', selection=[('normal', 'Normal'), ('minusvalido', 'Minusválido'), ('moderado', 'Moderado'), ('ciego', 'Ciego'), ('no_precisado', 'No Precisado')])
-   vision_ojo_izquierdo = fields.Selection(string = 'Visión Ojo Izquierdo', selection=[('normal', 'Normal'), ('minusvalido', 'Minusválido'), ('moderado', 'Moderado'), ('ciego', 'Ciego'), ('no_precisado', 'No Precisado')])
-   retinopatia_diabetica = fields.Selection(string = 'Retinopatía Diabética', selection=[('no', 'No'), ('no proliferativa', 'No Proliferativa'), ('proliferativa', 'Proliferativa'), ('no_precisado', 'No Precisado')]) 
-   retinopatia_hipertensiva = fields.Selection(string = 'Retinopatía Hipertensiva', selection=[('no', 'No'), ('grado 1', 'Grado 1'), ('grado 2', 'Grado 2'), ('grado 3', 'Grado 3'), ('grado 4', 'Grado 4'), ('no_precisado', 'No Precisado')])
-   retinopatia_arteroesc = fields.Selection(string = 'Retinopatía Arteroesc.', selection=[('no', 'No'), ('grado 1', 'Grado 1'), ('grado 2', 'Grado 2'), ('grado 3', 'Grado 3'), ('grado 4', 'Grado 4'), ('no_precisado', 'No Precisado')]) 
-   hemorragia_vitrea_od = fields.Selection(string = 'Hemorragia Vitrea OD', selection=[('no', 'No'), ('si', 'Si'),('no_precisado', 'No Precisado')])
-   hemorragia_vitrea_oi = fields.Selection(string = 'Hemorragia Vitrea OI', selection=[('no', 'No'), ('si', 'Si'),('no_precisado', 'No Precisado')])
-   maculopatia_od = fields.Selection(string = 'Maculopatía OD', selection=[('no', 'No'), ('si', 'Si'), ('no_precisado', 'No Precisado')])
-   maculopatia_oi = fields.Selection(string = 'Maculopatia OI', selection=[('no', 'No'), ('si', 'Si'), ('no_precisado', 'No Precisado')])
-   catarata = fields.Selection(string = 'Catarata', selection=[('no', 'No'), ('metabolica', 'Metabólica'), ('senil', 'Senil'), ('otras', 'Otras'), ('no_precisado', 'No Precisado')])
-   glaucoma = fields.Selection(string = 'Glaucoma', selection=[('no', 'No'), ('ang_abierto', 'Ang. Abierto'), ('secundario', 'Secundario'), ('ang. estrecho', 'Ang. Estrecho'), ('no_precisado', 'No Precisado')])
-   nefropatia = fields.Selection(string = 'Nefropatía', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
-   accidente_vascular_cerebral = fields.Selection(string = 'Accidente Vascular Cerebral', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
+   vision_ojo_derecho = fields.Selection(string = 'Vision Ojo Derecho', selection=[('normal', 'Normal'), 
+                                       ('minusvalido', 'Minusválido'), ('moderado', 'Moderado'), ('ciego', 'Ciego'), ('no_precisado', 'No Precisado')])
+   vision_ojo_izquierdo = fields.Selection(string = 'Visión Ojo Izquierdo', selection=[('normal', 'Normal'), 
+                                       ('minusvalido', 'Minusválido'), ('moderado', 'Moderado'), ('ciego', 'Ciego'), ('no_precisado', 'No Precisado')])
+   retinopatia_diabetica = fields.Selection(string = 'Retinopatía Diabética', selection=[('no', 'No'), 
+                                       ('no proliferativa', 'No Proliferativa'), ('proliferativa', 'Proliferativa'), ('no_precisado', 'No Precisado')]) 
+   retinopatia_hipertensiva = fields.Selection(string = 'Retinopatía Hipertensiva', selection=[('no', 'No'), 
+                                       ('grado 1', 'Grado 1'), ('grado 2', 'Grado 2'), ('grado 3', 'Grado 3'), ('grado 4', 'Grado 4'), ('no_precisado', 'No Precisado')])
+   retinopatia_arteroesc = fields.Selection(string = 'Retinopatía Arteroesc.', selection=[('no', 'No'), 
+                                       ('grado 1', 'Grado 1'), ('grado 2', 'Grado 2'), ('grado 3', 'Grado 3'), ('grado 4', 'Grado 4'), ('no_precisado', 'No Precisado')]) 
+   hemorragia_vitrea_od = fields.Selection(string = 'Hemorragia Vitrea OD', selection=[('no', 'No'), 
+                                       ('si', 'Si'),('no_precisado', 'No Precisado')])
+   hemorragia_vitrea_oi = fields.Selection(string = 'Hemorragia Vitrea OI', selection=[('no', 'No'), 
+                                       ('si', 'Si'),('no_precisado', 'No Precisado')])
+   maculopatia_od = fields.Selection(string = 'Maculopatía OD', selection=[('no', 'No'), 
+                                       ('si', 'Si'), ('no_precisado', 'No Precisado')])
+   maculopatia_oi = fields.Selection(string = 'Maculopatia OI', selection=[('no', 'No'), 
+                                 ('si', 'Si'), ('no_precisado', 'No Precisado')])
+   catarata = fields.Selection(string = 'Catarata', selection=[('no', 'No'), 
+                           ('metabolica', 'Metabólica'), ('senil', 'Senil'), ('otras', 'Otras'), ('no_precisado', 'No Precisado')])
+   glaucoma = fields.Selection(string = 'Glaucoma', selection=[('no', 'No'), 
+                           ('ang_abierto', 'Ang. Abierto'), ('secundario', 'Secundario'), ('ang. estrecho', 'Ang. Estrecho'), ('no_precisado', 'No Precisado')])
+   nefropatia = fields.Selection(string = 'Nefropatía', selection=[('si', 'Si'), 
+                              ('no', 'No'), ('no_precisado', 'No Precisado')])
+   accidente_vascular_cerebral = fields.Selection(string = 'Accidente Vascular Cerebral', selection=[
+      ('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
    cardiopatia_isquemica = fields.Selection(string = 'Cardiopatía Isquemica', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
    pie_isquemico = fields.Selection(string = 'Pie_ Isquemico', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
    mal_perforante = fields.Selection(string = 'Mal Perforante', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')]) 
@@ -195,16 +209,16 @@ class HistoriaClinicaPaciente(models.Model):
    vejiga_neurogenica = fields.Selection(string = 'Vejiga Neurogénica', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
    sepsis = fields.Selection(string = 'Sepsis', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
    dermopatia = fields.Selection(string = 'Dermopatía', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
-   hiperlipoproteinemia = fields.Selection(string = 'Hiperlipoproteinemia', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
+   hiperlipoproteinemia_c = fields.Selection(string = 'Hiperlipoproteinemia', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
    neuropatia_autonomica = fields.Selection(string = 'Neuropatia Autonomica', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')]) 
    otras_complicaciones = fields.Selection(string = 'Otras Complicaciones', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')])
-   hipertension_arterial = fields.Selection(string = 'Hipertension Arterial', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')]) 
+   hipertension_arterial_c = fields.Selection(string = 'Hipertension Arterial', selection=[('si', 'Si'), ('no', 'No'), ('no_precisado', 'No Precisado')]) 
    
    #Diagnostico_Definitivo
    diagnostico_definitivo = fields.Selection(string = 'Diagnóstico Definitivo(Tipo de DM)', selection=[('diabetes mellitus tipo 1', 'Diabetes Mellitus Tipo I'), ('diabetes mellitus tipo 2', 'Diabetes Mellitus Tipo II'), 
-                                                                                                       ('diabetes mellitus tipo lada', 'Diabetes Mellitus Tipo LADA'), ('diabetes mellitus pre-gestacional', 'Diabetes Mellitus Pre-Gestacional'),
-                                                                                                       ('diabetes mellitus gestacional', 'Diabetes Mellitus Gestacional'), ('diabetes mellitus inducido x medicamentos', 'Diabetes Mellitus Inducido x Medicamentos'), 
-                                                                                                       ('diabetes mellitus por glucocorticoides(dexametaso)', 'Diabetes Mellitus por glucocorticoides (Dexametaso)')])
+                                       ('diabetes mellitus tipo lada', 'Diabetes Mellitus Tipo LADA'), ('diabetes mellitus pre-gestacional', 'Diabetes Mellitus Pre-Gestacional'),
+                                       ('diabetes mellitus gestacional', 'Diabetes Mellitus Gestacional'), ('diabetes mellitus inducido x medicamentos', 'Diabetes Mellitus Inducido x Medicamentos'), 
+                                       ('diabetes mellitus por glucocorticoides(dexametaso)', 'Diabetes Mellitus por glucocorticoides (Dexametaso)')])
    
    #Otras Enfermedades
    otras_enfermedades = fields.Text(string = 'Otras Enfermedades')
@@ -214,11 +228,19 @@ class HistoriaClinicaPaciente(models.Model):
    ejercicios = fields.Text(string = 'Ejercicios')
    tratamiento_normoglucemiante = fields.Text(string = 'Tratamiento normoglucemiante')
    otros_tratamiento_indicaciones = fields.Text(string = 'Otros Tratamientos e indicaciones')
-   evolucion_en_ingreso = fields.Char(string = 'Evolución en el Ingreso', size = 250)
-   seguimiento = fields.Char(string = 'Seguimiento', size = 250)
+   evolucion_en_ingreso = fields.Text(string = 'Evolución en el Ingreso')
+   seguimiento = fields.Text(string = 'Seguimiento')
    evoluciones = fields.Html(string = 'Evoluciones')        
-   #state_hist_clinic = fields.Selection(string = 'Estado Historia Clínica', selection=[('confir', 'Confirmado'), ('cancel','Cancelado'), ('confirme','Confirme')],default='confirme')
    
    #-----------------------------------------------------------------------#
    #                 METODOS PARA HISTORIAS CLINICAS                       #
    #-----------------------------------------------------------------------#
+   
+   #usar esta funcion para validar valores
+    #_sql_constraints = [
+    #    (
+    #        'check_amount_not_negative',
+    #        'CHECK(amount >= 0.0)',
+    #        "The payment amount cannot be negative.",
+    #    ),
+    #]

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- VISTA TREE DATOS PRINCIPALES PACIENTES -->
+    <record id="cad_paciente_tree" model="ir.ui.view">
+        <field name="name">cad.paciente.tree</field>
+        <field name="model">cad.paciente</field>
+        <field name="arch" type="xml">
+        <!-- VISTA TREE DATOS PRINCIPALES PACIENTES -->
+            <tree string="Datos Paciente">
+                <field name="historia_clinica" readonly="1"/>
+                <field name="carnet_identidad" readonly="1"/>
+                <field name="nombre" readonly="1"/>
+                <field name="primer_apellido" readonly="1"/>
+                <field name="segundo_apellido" readonly="1"/>
+                <field name="color_piel" readonly="1"/>
+                <field name="edad_actual" readonly="1"/>
+                <field name="sexo" readonly="1"/>
+                <field name="calle" readonly="1" optional="hide"/>
+                <field name="numero" readonly="1" optional="hide"/>
+                <field name="entre_calles" readonly="1" optional="hide"/>
+                <field name="ciudad_o_pueblo" readonly="1" optional="hide"/>
+                <field name="phone_movil" widget="phone" readonly="1" optional="hide"/>
+                <field name="telefono_casa" widget="phone" readonly="1" optional="hide"/>
+                <field name="telefono_trabajo" widget="phone" readonly="1" optional="hide"/>
+                <field name="profesion" readonly="1" optional="hide"/>
+                <field name="municipio" readonly="1" optional="hide"/>
+                <field name="provincia" readonly="1" optional="hide"/>
+                <field name="nombre_apellidos_acomp" readonly="1" optional="hide"/>
+                <field name="direccion_acomp" readonly="1" optional="hide"/>
+                <field name="telefono_acomp" widget="phone" readonly="1" optional="hide"/>
+                <field name="activo"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- FORMULARIO DATOS PRINCIPALES PACIENTES -->
+    <record id="cad_paciente_form" model="ir.ui.view">
+      <field name="name">cad.paciente.form</field>
+      <field name="model">cad.paciente</field>
+      <field name="arch" type="xml">
+        <form string="Datos Paciente">
+          <header>
+              <!-- <button name="cerrar_curso" type="object" string="Terminar curso" class="btn-primary" confirm="¿Está seguro que desea cerrar el curso?"/>
+              <button name="confirmar_registro" type="object" string="Confirmar" class="btn-primary"/>
+              <field name="state" widget="statusbar" /> -->
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <group>
+                <th>
+                  <h6>Mod. 54-36-1</h6>
+                  <h6>Ministerio de Salud Pública</h6>
+                  <h6>HISTORIA CLÍNICA DE DIABETES MELLITUS</h6>
+                </th>
+              </group>
+              <!-- <label for="historia_clinica" class="oe_edit_only"/> -->
+              <h2>
+                <group>
+                  <group>  
+                    <field name="historia_clinica" required="1"/>
+                  </group>
+                  <group>
+                      <field name="image" widget="image" class="oe_avatar"/>
+                  </group>
+                </group>
+              </h2>
+            </div>
+            <group>
+              <group>
+                <field name="carnet_identidad" placeholder="NI"/>
+                <field name="nombre" placeholder="Nombre/First Name" />
+              </group>
+              <group>
+                <field name="primer_apellido" placeholder="Primer Apellido/First Name" />
+                <field name="segundo_apellido" placeholder="Segundo Apellido/Second Name"/>
+                <field name="activo"/>
+              </group>
+            </group>
+            <notebook>
+                <!--Datos Carnet De Identidad-->
+                <page name="datpacient" string="DATOS PACIENTES">
+                    <form>
+                        <separator string="Datos del Paciente"/>
+                        <group>
+                          <group>
+                            <group>
+                              <field name="edad_actual"/>
+                            </group>
+                            <group>
+                              <field name="color_piel" widget="radio"/>
+                            </group>
+                          </group>
+                          <group>
+                            <field name="sexo" widget="radio"/>
+                          </group>
+                        </group>
+                    </form>
+                </page>
+                <!--Dirección-->
+                <page name="datpacient" string="DIRECCION">
+                    <form>
+                        <separator string="Dirección Actual"/>
+                        <group>
+                          <group>
+                            <!-- <label for="street" string="Address"/> -->
+                            <!-- <div class="o_address_format"> -->
+                              <field name="calle" placeholder="Street..." class="o_address_street"/>
+                              <field name="numero" placeholder="number"/>
+                              <field name="entre_calles" placeholder="Street 2..." class="o_address_street"/>
+                              <field name="ciudad_o_pueblo" placeholder="City" class="o_address_city"/>
+                            <!-- </div> -->
+                          </group>
+                          <group>
+                              <field name="municipio"/>
+                              <field name="provincia"/>
+                          </group>
+                        </group>
+                    </form>
+                </page>
+                <!--Datos Telefonos de contacto-->
+                <page name="dattelf" string="TELEFONOS CONTACTO">
+                    <form>
+                        <separator string="Datos Teléfonos de contacto"/>
+                        <group>
+                          <group>
+                            <field name="phone_movil" widget="phone"/>
+                            <field name="telefono_casa" widget="phone"/>
+                          </group>
+                          <group>
+                            <field name="telefono_trabajo" widget="phone"/>
+                          </group>
+                        </group>
+                    </form>
+                </page>
+                <!--Datos escolaridad-->
+                <page name="datprof" string="DATOS PROFESION">
+                    <form>
+                        <separator string="Datos de Profesión"/>
+                        <group>
+                          <group>
+                              <field name="profesion"/>
+                          </group>
+                        </group>
+                    </form>
+                </page>
+                <!--Datos del acompañante-->
+                <page name="datacomp" string="DATOS ACOMPAÑANTE">
+                    <form>
+                        <separator string="Datos del Acompañante"/>
+                        <group>
+                          <group>
+                            <field name="nombre_apellidos_acomp"/>
+                            <field name="direccion_acomp"/>
+                          </group>
+                          <group>
+                            <field name="telefono_acomp" widget="phone"/>
+                          </group>
+                        </group>
+                    </form>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- Vista Kanban-->
+    <record id="cad_paciente_view_kanban" model="ir.ui.view">
+      <field name="name">cad.paciente.view.kanban</field>
+      <field name="model">cad.paciente</field>
+      <field name="arch" type="xml">
+        <kanban>
+            <field name="id"/>
+            <field name="image"/>
+            <field name="historia_clinica"/>
+            <field name="carnet_identidad"/>
+            <field name="nombre"/>
+            <field name="primer_apellido"/>
+            <field name="segundo_apellido"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+                  <div class="o_kanban_image">
+                    <img t-att-src="kanban_image('cad.paciente', 'image', record.id.raw_value)" alt="image"/>
+                  </div>
+                  <div class="oe_kanban_details">
+                    <strong class="o_kanban_record_title">
+                        <field name="historia_clinica"/>
+                        <field name="carnet_identidad" widget="text"/>
+                    </strong>
+                  </div>
+                  <div class="o_kanban_tags_section">
+                    <field name="nombre"/>
+                    <field name="primer_apellido" />
+                    <field name="segundo_apellido"/>
+                  </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+    <!-- VISTA DE BUSQUEDA-->
+    <record id="cad_paciente_view_search" model="ir.ui.view">
+      <field name="name">cad.paciente.view.search</field>
+      <field name="model">cad.paciente</field>
+      <field name="arch" type="xml">
+        <search>
+            <!--Busqueda rápida-->
+            <field name="historia_clinica" string="Historia clínica"/>
+            <field name="nombre"/>
+            <field name="primer_apellido"/>
+            <field name="segundo_apellido"/>
+            <searchpanel>
+              <!-- <field name="sexo" icon="fa-users"/> -->
+            </searchpanel>
+        </search>
+      </field>
+    </record>
+    <record id="cad_princ_paciente" model="ir.actions.act_window">
+      <field name="name">Datos Paciente</field>
+      <field name="res_model">cad.paciente</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <!-- <field name="domain">[('state', '=','open')]</field> -->
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Movimiento Hospitalario
+          </p> 
+      </field>    
+    </record>
+  </data>
+</odoo>
