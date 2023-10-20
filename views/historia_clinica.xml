@@ -1,13 +1,514 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-
+    <record id="hist_clinic_paciente_tree" model="ir.ui.view">
+      <field name="name">hist.clinic.paciente.tree</field>
+      <field name="model">cad.datos.reg.turno</field>
+      <field name="arch" type="xml">
+        <tree string="Historia Clínica">
+          <field name="edad_al_debut" string="Edad al debut(6)"/>
+          <field name="edad_al_debut_cantidad"/>
+          <field name="tiempo_evolucion" string="(7)Tiempo de Evolución"/>
+          <field name="tiempo_evolucion_cantidad"/>
+          <field name="glicemia_al_debut"/>
+          <field name="modo_debut" string="(8)Modo de Debut"/>
+          <field name="otro_modo_debut"/>
+          <field name="obesidad_debut" string="(9)Obesidad al Debut"/>
+          <field name="menarquia_edad" string="(10)Menarquia( edad )"/>
+          <field name="embarazo" string="(11)Embarazos"/>
+          <field name="embarazo_cantidad"/>
+          <field name="aborto_espontaneo" string="(12)Abortos espontáneos"/>
+          <field name="aborto_espontaneo_cant"/>
+          <field name="malformaciones_congenitas" string="(13)Malformaciones congénitas"/>
+          <field name="macrofetos" string="(14)Macrofetos"/>
+          <field name="macrofetos_cant"/>
+          <field name="muerte_perinatal" string="(15)Muerte perinatal"/>
+          <field name="muerte_perinatal_cant"/>
+          <field name="menopausia" string="(16)Menopausia"/>
+          <field name="menopausia_edad"/>
+          <field name="fecha_ultima_mestruacion"/>
+          <field name="via_materna" string="(17)Vía Materna"/>
+          <field name="via_paterna" string="(18)Vía Paterna"/>
+          <field name="hermano" string="(19)Hermano"/>
+          <field name="hijo" string="(20)Hijo"/>
+          <field name="comentario"/>
+          <field name="hiperlipoproteinemia_p"/>
+          <field name="hipertension_arterial_p"/>
+          <field name="cardiopatia_isquemica_p"/>
+          <field name="claudicacion_intermitente_p"/>
+          <field name="otros"/>
+          <field name="otros_especificar"/>
+          <field name="hiperlipoproteinemia_f"/>
+          <field name="hipertension_arterial_f"/>
+          <field name="cardiopatia_isquemica_f"/>
+          <field name="habitos_toxico"/>
+          <field name="annos_fumador"/>
+          <field name="annos_ex_fumador"/>
+          <field name="tabaquismo"/>
+          <field name="tabaquismo_cantidad"/>
+          <field name="alcohol"/>
+          <field name="alcohol_gramos"/>
+          <field name="tratamiento_inicio" string="(32)Tratamiento al Inicio"/>
+          <field name="anno_comienzo" string="(33)Año de comienzo"/>
+          <field name="tratamiento_actual" string="(34)Tratamiento actual"/>
+          <field name="anno_comienzo_f" string="(35)Año de comienzo"/>
+          <field name="sintoma_actuales"/>
+          <field name="examen_fisico"/>
+          <field name="estudio_socio_laboral"/>
+          <field name="talla" string="(36)Talla (cm)"/>
+          <field name="peso" string="(37)Peso (kg)"/>
+          <field name="indice_masa_corp"/>
+          <field name="evaluacion_nutricional"/>
+          <field name="ta_acostado_sistolica" string="(38)TA acostado Sistólica (mmHg)"/>
+          <field name="ta_acostado_diastolica" string="(39)TA acostado Diastólica (mmHg)"/>
+          <field name="ta_parado_sistolica" string="(40)TA Parado Sistólica (mmHg)"/>
+          <field name="ta_parado_diastolica" string="(41)TA Parado Diastólica (mmHg)"/>
+          <field name="frecuencia_cardiaca" string="(42)Frecuencia cardiaca (mmHg)"/>
+          <field name="circunferencia_abdominal" string="(43)Circunferencia Abdominal (cm)"/>
+          <field name="circunferencia_cadera" string="(44)Circunferencia Cadera (cm)"/>
+          <field name="dieta" string="(45)Dieta"/>
+          <field name="automonitoreo" string="(46)Automonitoreo"/>
+          <field name="cuidado_pies" string="(47)Cuidado de los Pies"/>
+          <field name="hipoglicemia" string="(48)Hipoglicemias"/>
+          <field name="complicacione" string="(49)Complicaciones"/>
+          <field name="autoajuste_tratamiento" string="(50)Autoajuste del Tratamiento"/>
+          <field name="resultado_inicial"/>
+          <field name="resultado_final"/>
+          <field name="amputacione_der"/>
+          <field name="amputacione_izq"/>
+          <field name="apariencia_isquemica_der"/>
+          <field name="apariencia_isquemica_izq"/>
+          <field name="pulso_pedio_der"/>
+          <field name="pulso_pedio_izq"/>
+          <field name="pulso_tibial_posterior_der"/>
+          <field name="pulso_tibial_posterior_izq"/>
+          <field name="lesiones_ulcerosas_der"/>
+          <field name="lesiones_ulcerosas_izq"/>
+          <field name="reflejo_rotuliano_der"/>
+          <field name="reflejo_rotuliano_izq"/>
+          <field name="palestesia_der"/>
+          <field name="palestesia_izq"/>
+          <field name="glucemia_ay" string="Glucemia_ay(mmol/l)"/>
+          <field name="glucemia_pp_2h" string="Glucemia_pp_2h(mmol/l)"/>
+          <field name="hba_1c" string="hba_1c(%)"/>
+          <field name="colesterol" string="Colesterol(mmol/l)"/>
+          <field name="trigliceridos" string="Trigliceridos(mmol/l)"/>
+          <field name="hdl_col" string="HDL-Col(mmol/l)"/>
+          <field name="creatinina" string="Creatininina(mml/l)"/>
+          <field name="microalbuminuria" string="Microalbuminuria(mg/l)"/>
+          <field name="filtrado_glomerular_sangre"/>
+          <field name="filtrado_glomerular_ckd_epi"/>
+          <field name="filtrado_glomerular_orina"/>
+          <field name="hc_hemoglobina"/>
+          <field name="hc_Leucocito"/>
+          <field name="hc_hematrocito"/>
+          <field name="hc_eritrosedimentacion"/>
+          <field name="conteo_addis_proteina"/>
+          <field name="conteo_addis_leucocito"/>
+          <field name="conteo_addis_hematios"/>
+          <field name="conteo_addis_cilindro"/>
+          <field name="tgp"/>
+          <field name="tgo"/>
+          <field name="ggt"/>
+          <field name="falc"/>
+          <field name="urato"/>
+          <field name="proteina_c_reactiva"/>
+          <field name="cistatina_c"/>
+          <field name="complem_otros"/>
+          <field name="vision_borrosa"/>
+          <field name="vision_ojo_derecho"/>
+          <field name="vision_ojo_izquierdo"/>
+          <field name="retinopatia_diabetica"/>
+          <field name="retinopatia_hipertensiva"/>
+          <field name="retinopatia_arteroesc"/>
+          <field name="hemorragia_vitrea_od"/>
+          <field name="hemorragia_vitrea_oi"/>
+          <field name="maculopatia_od"/>
+          <field name="maculopatia_oi"/>
+          <field name="catarata"/>
+          <field name="glaucoma"/>
+          <field name="nefropatia"/>
+          <field name="accidente_vascular_cerebral"/>
+          <field name="cardiopatia_isquemica"/>
+          <field name="pie_isquemico"/>
+          <field name="mal_perforante"/>
+          <field name="polineuropatia_periferica"/>
+          <field name="mononeuropatia"/>
+          <field name="dse"/>
+          <field name="vejiga_neurogenica"/>
+          <field name="sepsis"/>
+          <field name="dermopatia" />
+          <field name="hiperlipoproteinemia_c"/>
+          <field name="neuropatia_autonomica"/>
+          <field name="otras_complicaciones"/>
+          <field name="hipertension_arterial_c"/>
+          <field name="diagnostico_definitivo"/>
+          <field name="otras_enfermedades"/>
+          <field name="dieta_calorias"/>
+          <field name="ejercicios"/>
+          <field name="tratamiento_normoglucemiante"/>
+          <field name="otros_tratamiento_indicaciones"/>
+          <field name="evolucion_en_ingreso"/>
+          <field name="seguimiento"/>
+          <field name="evoluciones"/>
+        </tree>
+      </field>
+    </record>
+    <record id="hist_clinic_paciente_form" model="ir.ui.view">
+      <field name="name">hist.clinic.paciente.form</field>
+      <field name="model">cad.datos.reg.turno</field>
+      <field name="arch" type="xml">
+        <form string="Historia Clínica">
+          <header>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <group>
+                <th>
+                  <h6>Mod. 54-36-1</h6>
+                  <h6>Ministerio de Salud Pública</h6>
+                  <h6>HISTORIA CLÍNICA DE DIABETES MELLITUS</h6>
+                </th>
+              </group>
+            </div>
+            <form create="0" delete="0">
+              <notebook>
+                <!--HOJA 1-->
+                <page name="hist_clinic_1" string="Historia Clínica(hoja: 1)">
+                  <!--<field name="">-->
+                  <form>
+                    <group >
+                      <group>
+                        <p>
+                          <separator name="edad_deb" string="Edad al debut:"/>
+                        </p>
+                        <field name="edad_al_debut" string="Edad al debut(6)" colspan="2"/>
+                        <field name="edad_al_debut_cantidad"/>
+                        <p>
+                          <separator name="tiemp_evol" string="Tiempo de Evolución:"/>
+                        </p>
+                        <field name="tiempo_evolucion" string="(7)Tiempo de Evolución"/>
+                        <field name="tiempo_evolucion_cantidad"/>
+                        <field name="glicemia_al_debut"/>
+                      </group>
+                      <group>
+                        <p>
+                          <separator name="modo_deb" string="Modo de Debut:"/>
+                        </p>
+                        <field name="modo_debut" string="(8)Modo de Debut"/>
+                        <field name="otro_modo_debut"/>
+                        <p>
+                          <separator name="obes_deb" string="Obesidad al Debut:"/>
+                        </p>
+                        <field name="obesidad_debut" string="(9)Obesidad al Debut"/>
+                      </group>
+                    </group>
+                    <group>
+                      <group>
+                        <p>
+                          <separator name="antec_obstet" string="Antecedentes Obstétricos:"/>
+                        </p>
+                        <field name="menarquia_edad" string="(10)Menarquia( edad )"/>
+                        <field name="embarazo" string="(11)Embarazos"/>
+                        <field name="embarazo_cantidad"/>
+                        <field name="aborto_espontaneo" string="(12)Abortos espontáneos"/>
+                        <field name="aborto_espontaneo_cant"/>
+                        <field name="malformaciones_congenitas" string="(13)Malformaciones congénitas"/>
+                        <field name="macrofetos" string="(14)Macrofetos"/>
+                        <field name="macrofetos_cant"/>
+                        <field name="muerte_perinatal" string="(15)Muerte perinatal"/>
+                        <field name="muerte_perinatal_cant"/>
+                        <field name="menopausia" string="(16)Menopausia"/>
+                        <field name="menopausia_edad"/>
+                        <field name="fecha_ultima_mestruacion"/>
+                      </group>
+                      <group>
+                        <p>
+                          <separator name="antec_fam_diab" string="Antecedentes Familiares de Diabetes:"/>
+                        </p>
+                        <field name="via_materna" string="(17)Vía Materna"/>
+                        <field name="via_paterna" string="(18)Vía Paterna"/>
+                        <field name="hermano" string="(19)Hermano"/>
+                        <field name="hijo" string="(20)Hijo"/>
+                        <field name="comentario"/>
+                      </group>
+                    </group>
+                    <group>
+                      <group >
+                        <p>
+                          <separator name="antec_pat_perso" string="Antecedentes Patológicos Personales:"/>
+                        </p>
+                        <field name="hiperlipoproteinemia_p"/>
+                        <field name="hipertension_arterial_p"/>
+                        <field name="cardiopatia_isquemica_p"/>
+                        <field name="claudicacion_intermitente_p"/>
+                        <field name="otros"/>
+                        <field name="otros_especificar"/>
+                        <p>
+                          <separator name="antec_patol_fam" string="Antecedentes Patológicos Familiares:"/>
+                        </p>
+                        <field name="hiperlipoproteinemia_f"/>
+                        <field name="hipertension_arterial_f"/>
+                        <field name="cardiopatia_isquemica_f"/>
+                      </group>
+                      <group>
+                        <p>
+                          <separator name="" string="Hábitos Tóxicos(29):"/>
+                        </p>
+                        <field name="habitos_toxico"/>
+                        <field name="annos_fumador"/>
+                        <field name="annos_ex_fumador"/>
+                        <field name="tabaquismo"/>
+                        <field name="tabaquismo_cantidad"/>
+                        <field name="alcohol"/>
+                        <field name="alcohol_gramos"/>
+                      </group>
+                    </group>
+                    <group>
+                      <group>
+                        <p>
+                          <separator name="tratam_inic" string="Tratamientos:"/>
+                        </p>
+                        <field name="tratamiento_inicio" string="(32)Tratamiento al Inicio"/>
+                        <field name="anno_comienzo" string="(33)Año de comienzo"/>
+                        <field name="tratamiento_actual" string="(34)Tratamiento actual"/>
+                        <field name="anno_comienzo_f" string="(35)Año de comienzo"/>
+                      </group>
+                      <group>
+                        <p>
+                          <separator name="sint_act" string="Síntomas actuales:"/>
+                        </p>
+                        <field name="sintoma_actuales"/>
+                      </group>
+                    </group>
+                  </form>
+                  <!--</field>-->
+                </page>
+                <!--HOJA 2-->
+                <page name="hist_clinic_2" string="Historia Clínica(hoja: 2)">
+                  <form>
+                    <p>
+                      <separator name="exam_fis" string="Examen Físico(exámenes por aparato):"/>
+                    </p>
+                    <group>
+                      <field name="examen_fisico"/>
+                    </group>
+                    <p>
+                      <separator name="est_soc_lab" string="Estudio Socio Laboral:"/>
+                    </p>
+                    <group>
+                      <group>
+                        <field name="estudio_socio_laboral"/>
+                      </group>
+                    </group>
+                    <p>
+                      <separator name="medidas" string="Medidas:"/>
+                    </p>
+                    <group>
+                      <group>
+                        <field name="talla" string="(36)Talla (cm)"/>
+                        <field name="peso" string="(37)Peso (kg)"/>
+                        <field name="indice_masa_corp"/>
+                        <field name="evaluacion_nutricional"/>
+                        <field name="ta_acostado_sistolica" string="(38)TA acostado Sistólica (mmHg)"/>
+                        <field name="ta_acostado_diastolica" string="(39)TA acostado Diastólica (mmHg)"/>
+                      </group>
+                      <group>
+                        <field name="ta_parado_sistolica" string="(40)TA Parado Sistólica (mmHg)"/>
+                        <field name="ta_parado_diastolica" string="(41)TA Parado Diastólica (mmHg)"/>
+                        <field name="frecuencia_cardiaca" string="(42)Frecuencia cardiaca (mmHg)"/>
+                        <field name="circunferencia_abdominal" string="(43)Circunferencia Abdominal (cm)"/>
+                        <field name="circunferencia_cadera" string="(44)Circunferencia Cadera (cm)"/>
+                      </group>
+                    </group>
+                    <group>
+                      <group>
+                        <p>
+                          <separator name="conoc_prev_ing" string="Conocimientos Previos al Ingreso:"/>
+                        </p>
+                        <field name="dieta" string="(45)Dieta"/>
+                        <field name="automonitoreo" string="(46)Automonitoreo"/>
+                        <field name="cuidado_pies" string="(47)Cuidado de los Pies"/>
+                        <field name="hipoglicemia" string="(48)Hipoglicemias"/>
+                        <field name="complicacione" string="(49)Complicaciones"/>
+                        <field name="autoajuste_tratamiento" string="(50)Autoajuste del Tratamiento"/>
+                      </group>
+                      <group>
+                        <p>
+                          <separator name="edu_diabet" string="Resultados de Educación Diabetológica:"/>
+                        </p>
+                        <field name="resultado_inicial"/>
+                        <field name="resultado_final"/>
+                      </group>
+                    </group>
+                    <p>
+                      <separator name="examen_miemb" string="EXAMEN DE MIEMBROS INFERIORES:"/>
+                    </p>
+                    <group colspan="10">
+                      <group>
+                        <field name="amputacione_der"/>
+                        <field name="amputacione_izq"/>
+                        <field name="apariencia_isquemica_der"/>
+                        <field name="apariencia_isquemica_izq"/>
+                        <field name="pulso_pedio_der"/>
+                        <field name="pulso_pedio_izq"/>
+                        <field name="pulso_tibial_posterior_der"/>
+                      </group>
+                      <group >
+                        <field name="pulso_tibial_posterior_izq"/>
+                        <field name="lesiones_ulcerosas_der"/>
+                        <field name="lesiones_ulcerosas_izq"/>
+                        <field name="reflejo_rotuliano_der"/>
+                        <field name="reflejo_rotuliano_izq"/>
+                        <field name="palestesia_der"/>
+                        <field name="palestesia_izq"/>
+                      </group>
+                    </group>
+                  </form>
+                </page>
+                <!--HOJA 3-->
+                <page name="hist_clinic_3" string="Historia Clínica(hoja: 3)">
+                  <form>
+                    <p>
+                      <separator name="complementarios" string="COMPLEMENTARIOS:"/>
+                    </p>
+                    <group>
+                      <group>
+                        <group>
+                          <field name="glucemia_ay" string="Glucemia_ay(mmol/l)"/>
+                          <field name="glucemia_pp_2h" string="Glucemia_pp_2h(mmol/l)"/>
+                          <field name="hba_1c" string="hba_1c(%)"/>
+                          <field name="colesterol" string="Colesterol(mmol/l)"/>
+                          <field name="trigliceridos" string="Trigliceridos(mmol/l)"/>
+                          <field name="hdl_col" string="HDL-Col(mmol/l)"/>
+                          <field name="creatinina" string="Creatininina(mml/l)"/>
+                        </group>
+                        <group>
+                          <field name="microalbuminuria" string="Microalbuminuria(mg/l)"/>
+                          <field name="filtrado_glomerular_sangre"/>
+                          <field name="filtrado_glomerular_ckd_epi"/>
+                          <field name="filtrado_glomerular_orina"/>
+                          <field name="hc_hemoglobina"/>
+                          <field name="hc_Leucocito"/>
+                          <field name="hc_hematrocito"/>
+                        </group>
+                      </group>
+                      <group>
+                        <group>
+                          <field name="hc_eritrosedimentacion"/>
+                          <field name="conteo_addis_proteina"/>
+                          <field name="conteo_addis_leucocito"/>
+                          <field name="conteo_addis_hematios"/>
+                          <field name="conteo_addis_cilindro"/>
+                          <field name="tgp"/>
+                        </group>
+                        <group>
+                          <field name="tgo"/>
+                          <field name="ggt"/>
+                          <field name="falc"/>
+                          <field name="urato"/>
+                          <field name="proteina_c_reactiva"/>
+                          <field name="cistatina_c"/>
+                        </group>
+                      </group>
+                      <group>
+                        <field name="complem_otros"/>
+                      </group>
+                    </group>
+                  </form>
+                </page>
+                <!--HOJA 4-->
+                <page name="hist_clinic_4" string="Historia Clínica(hoja: 4)">
+                  <form>
+                    <group>
+                      <group>
+                        <p>
+                          <separator name="complicaciones" string="COMPLICACIONES:"/>
+                        </p>
+                        <field name="vision_borrosa"/>
+                        <field name="vision_ojo_derecho"/>
+                        <field name="vision_ojo_izquierdo"/>
+                        <field name="retinopatia_diabetica"/>
+                        <field name="retinopatia_hipertensiva"/>
+                        <field name="retinopatia_arteroesc"/>
+                        <field name="hemorragia_vitrea_od"/>
+                        <field name="hemorragia_vitrea_oi"/>
+                        <field name="maculopatia_od"/>
+                        <field name="maculopatia_oi"/>
+                        <field name="catarata"/>
+                        <field name="glaucoma"/>
+                        <field name="nefropatia"/>
+                        <field name="accidente_vascular_cerebral"/>
+                      </group>
+                      <group>
+                        <field name="cardiopatia_isquemica"/>
+                        <field name="pie_isquemico"/>
+                        <field name="mal_perforante"/>
+                        <field name="polineuropatia_periferica"/>
+                        <field name="mononeuropatia"/>
+                        <field name="dse"/>
+                        <field name="vejiga_neurogenica"/>
+                        <field name="sepsis"/>
+                        <field name="dermopatia" />
+                        <field name="hiperlipoproteinemia_c"/>
+                        <field name="neuropatia_autonomica"/>
+                        <field name="otras_complicaciones"/>
+                        <field name="hipertension_arterial_c"/>
+                      </group>
+                      <group>
+                        <p>
+                          <separator name="Diagnóstico Definitivo" string="Diagnóstico Definitivo:"/>
+                        </p>
+                        <field name="diagnostico_definitivo"/>
+                      </group>
+                    </group>
+                    <p>
+                      <separator name="Otras Enfermedades:" string="Otras Enfermedades:"/>
+                    </p>
+                    <group>
+                      <field name="otras_enfermedades"/>
+                    </group>
+                  </form>
+                </page>
+                <!--HOJA 5-->
+                <page name="hist_clinic_5" string="Historia Clínica(hoja: 5)">
+                  <form>
+                    <p>
+                      <separator name="Indicaciones y Tratamiento" string="Indicaciones y Tratamiento:"/>
+                    </p>
+                    <group>
+                      <group>
+                        <group>
+                          <field name="dieta_calorias"/>
+                        </group>
+                      </group>
+                    </group>
+                    <group>
+                      <field name="ejercicios"/>
+                      <field name="tratamiento_normoglucemiante"/>
+                      <field name="otros_tratamiento_indicaciones"/>
+                      <field name="evolucion_en_ingreso"/>
+                      <field name="seguimiento"/>
+                      <field name="evoluciones"/>
+                    </group>
+                  </form>
+                </page>
+              </notebook>
+            </form>
+          </sheet>
+        </form>
+      </field>
+    </record>
     <record id="hist_clinic_paciente" model="ir.actions.act_window">
       <field name="name">Historia Clinica</field>
       <field name="res_model">cad.datos.reg.turno</field>
       <field name="view_mode">tree,form</field>
-      <field name="domain">[('state', '=','confirm')]</field>
+      <!-- <field name="domain">[('state', '=','confirm')]</field> -->
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Historia Clínica
+          </p> 
+      </field>
     </record>
-
   </data>
 </odoo>

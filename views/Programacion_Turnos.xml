@@ -20,6 +20,7 @@
           <field name="fecha_inicio"/>
           <field name="fecha_fin"/>
           <field name="mes_del_turno"/>
+          <field name="anno"/>
           <!-- <field name="hora_del_turno"/> -->
         </tree>
       </field>
@@ -30,7 +31,7 @@
       <field name="arch" type="xml">
         <form string="Programacion de Turnos">
           <header>
-              <button name="addmovhsp" type="object" string="Generar Movimiento Hospitalario" class="btn-primary"/>
+              <button name="addmovhsp" type="object" string="Generar Movimiento Hospitalario" class="btn-primary" states="draft"/>
               <field name="state" widget="statusbar"/>
           </header>
           <sheet>
@@ -49,18 +50,18 @@
               </group>
               <label for="no_folio" class="oe_edit_only"/>
               <h2>
-                <field name="no_folio" required="1"  attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="no_folio" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               </h2>
-          </div>
+            </div>
             <group>
               <group >
                 <field name="fecha_inicio" placeholder="Inicio del Curso" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                 <field name="fecha_fin" placeholder="Fin del Curso" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               </group>
-              <group class="oe_read_only">
+              <group>
                 <!--Estos campos cambian de acuero a la fecha de inicio del curso-->
-                <field name="mes_del_turno"/>
-                <field name="anno"/>
+                  <field name="mes_del_turno" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                  <field name="anno" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               </group>
             </group>
            
@@ -68,21 +69,24 @@
               <page name="listadop" string="Listado de Pacientes">
                 <field name="datos_reg_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
                   <tree>
-                    <field name="numero_turno"/>
+                    <field name="numero_turno" />
+                    <field name="historia_clinica"/>
                     <field name="carnet_identidad"/>
                     <field name="nombre_apellidos_id"/>
-                    <field name="historia_clinica"/>
+                    <field name="primer_apellido"/>
+                    <field name="segundo_apellido"/>
                   </tree>
                   <form>
                     <separator string="Datos Principales del Turno"/>
                     <group>
                       <group>
                         <field name="numero_turno"/>
+                        <field name="carnet_identidad"/>
                       </group>
                       <group>
-                        <field name="nombre_apellidos_id"/>
-                        <!-- <field name="historia_clinica"/>
-                        <field name="carnet_identidad"/> -->
+                        <field name="nombre_apellidos_id" widget="selection" domain="[('activo', '=','True')]"/>
+                        <field name="primer_apellido"/>
+                        <field name="segundo_apellido"/>
                       </group>
                     </group>
                   </form>           
@@ -93,7 +97,17 @@
         </form>
       </field>
     </record>
-
+    <!--Vista de busqueda-->
+    <!-- <record id="cad_prog_turno_view_search" model="ir.ui.view">
+      <field name="name">cad.prog.turno.view.search</field>
+      <field name="model">cad.prog.turno</field>
+      <field name="arch" type="xml">
+        <search>
+          <searchpanel>
+          </searchpanel>
+        </search>
+      </field>
+    </record> -->
     <record id="cad_prog_turno_action2" model="ir.actions.act_window">
       <field name="name">Programacion de Turnos</field>
       <field name="res_model">cad.prog.turno</field>
@@ -117,8 +131,7 @@
       <field name="arch" type="xml">
         <form string="Programacion de Turnos">
           <header>
-              <button name="cerrar_curso" type="object" string="Terminar curso" class="btn-primary" confirm="¿Está seguro que desea cerrar el curso?"/>
-              <button name="confirmar_registro" type="object" string="Confirmar" class="btn-primary"/>
+              <!-- <button name="envborrad" type="object" string="Enviar Borrador" class="btn-primary" states="open"/> -->
               <field name="state" widget="statusbar" />
           </header>
           <sheet>
@@ -134,11 +147,16 @@
               <h2>
                 <field name="no_folio" required="1"  attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               </h2>
-          </div>
+            </div>
             <group>
               <group >
                 <field name="fecha_inicio" placeholder="Inicio del Curso" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                 <field name="fecha_fin" placeholder="Fin del Curso" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+              </group>
+              <group>
+                <!--Estos campos cambian de acuero a la fecha de inicio del curso-->
+                  <field name="mes_del_turno" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                  <field name="anno" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               </group>
             </group>
             <notebook>
@@ -183,13 +201,13 @@
                       <page name="dgeneral" string="Datos generales">
                         <group>
                           <group>
-                            <field name="remitido"/>
-                            <field name="area_salud"/>
-                            <field name="ocupacion"/>
+                            <field name="remitido" widget="radio"/>
+                            <field name="area_salud" />
+                            <field name="consultorio_medico"/>
                           </group>
                           <group>
                             <field name="escolaridad"/>
-                            <field name="consultorio_medico"/>
+                            <field name="ocupacion"/>
                           </group>
                         </group>
                       </page>
@@ -197,7 +215,7 @@
                          <!--HOJAS-->
                         <notebook>
                           <!--HOJA 1-->
-                          <page name="hist_clinic_1" string="Historia Clínica(hoja: 1)">
+                          <page name="hist_clinic_1" string="Hoja: 1">
                             <!--<field name="">-->
                               <form>
                                 <group>
@@ -268,26 +286,26 @@
                                     <p>
                                       <separator name="antec_pat_perso" string="Antecedentes Patológicos Personales:"/>
                                     </p>
-                                    <field name="hiperlipoproteinemia"/>
-                                    <field name="hipertension_arterial"/>
-                                    <field name="cardiopatia_isquemica"/>
-                                    <field name="claudicacion_intermitente"/>
+                                    <field name="hiperlipoproteinemia_p"/>
+                                    <field name="hipertension_arterial_p"/>
+                                    <field name="cardiopatia_isquemica_p"/>
+                                    <field name="claudicacion_intermitente_p"/>
                                     <field name="otros"/>
                                     <field name="otros_especificar"/>
                                     <p>
                                       <separator name="antec_patol_fam" string="Antecedentes Patológicos Familiares:"/>
                                     </p>
-                                    <field name="hiperlipoproteinemia"/>
-                                    <field name="hipertension_arterial"/>
-                                    <field name="cardiopatia_isquemica"/>
+                                    <field name="hiperlipoproteinemia_f"/>
+                                    <field name="hipertension_arterial_f"/>
+                                    <field name="cardiopatia_isquemica_f"/>
                                   </group>
                                   <group>
                                     <p>
                                       <separator name="" string="Hábitos Tóxicos(29):"/>
                                     </p>
                                     <field name="habitos_toxico"/>
-                                    <field name="años_fumador"/>
-                                    <field name="años_ex_fumador"/>
+                                    <field name="annos_fumador"/>
+                                    <field name="annos_ex_fumador"/>
                                     <field name="tabaquismo"/>
                                     <field name="tabaquismo_cantidad"/>
                                     <field name="alcohol"/>
@@ -300,9 +318,9 @@
                                         <separator name="tratam_inic" string="Tratamientos:"/>
                                       </p>
                                       <field name="tratamiento_inicio" string="(32)Tratamiento al Inicio"/>
-                                      <field name="año_comienzo" string="(33)Año de comienzo"/>
+                                      <field name="anno_comienzo" string="(33)Año de comienzo"/>
                                       <field name="tratamiento_actual" string="(34)Tratamiento actual"/>
-                                      <field name="año_comienzo" string="(35)Año de comienzo"/>
+                                      <field name="anno_comienzo_f" string="(35)Año de comienzo"/>
                                   </group>
                                   <group>
                                       <p>
@@ -315,7 +333,7 @@
                             <!--</field>-->  
                           </page>
                           <!--HOJA 2-->
-                          <page name="hist_clinic_2" string="Historia Clínica(hoja: 2)">
+                          <page name="hist_clinic_2" string="Hoja: 2">
                             <form>
                               <group>
                                 <th>
@@ -344,15 +362,15 @@
                               <group>
                                 <group>
                                   <field name="talla" string="(36)Talla (cm)"/>
-                                  <field name="Peso" string="(37)Peso (kg)"/>
+                                  <field name="peso" string="(37)Peso (kg)"/>
                                   <field name="indice_masa_corp"/>
                                   <field name="evaluacion_nutricional"/>
-                                  <field name="TA_acostado_sistolica" string="(38)TA acostado Sistólica (mmHg)"/>
-                                  <field name="TA_acostado_diastolica" string="(39)TA acostado Diastólica (mmHg)"/>
+                                  <field name="ta_acostado_sistolica" string="(38)TA acostado Sistólica (mmHg)"/>
+                                  <field name="ta_acostado_diastolica" string="(39)TA acostado Diastólica (mmHg)"/>
                                 </group>
                                 <group>
-                                  <field name="TA_parado_sistolica" string="(40)TA Parado Sistólica (mmHg)"/>
-                                  <field name="TA_parado_diastolica" string="(41)TA Parado Diastólica (mmHg)"/>
+                                  <field name="ta_parado_sistolica" string="(40)TA Parado Sistólica (mmHg)"/>
+                                  <field name="ta_parado_diastolica" string="(41)TA Parado Diastólica (mmHg)"/>
                                   <field name="frecuencia_cardiaca" string="(42)Frecuencia cardiaca (mmHg)"/>
                                   <field name="circunferencia_abdominal" string="(43)Circunferencia Abdominal (cm)"/>
                                   <field name="circunferencia_cadera" string="(44)Circunferencia Cadera (cm)"/>
@@ -404,7 +422,7 @@
                             </form>
                           </page>
                           <!--HOJA 3-->
-                          <page name="hist_clinic_3" string="Historia Clínica(hoja: 3)">
+                          <page name="hist_clinic_3" string="Hoja: 3">
                             <form>
                               <group>
                                 <th>
@@ -462,7 +480,7 @@
                             </form>
                           </page>
                           <!--HOJA 4-->
-                          <page name="hist_clinic_4" string="Historia Clínica(hoja: 4)">
+                          <page name="hist_clinic_4" string="Hoja: 4">
                             <form>
                               <group>
                                 <th>
@@ -501,10 +519,10 @@
                                     <field name="vejiga_neurogenica"/>
                                     <field name="sepsis"/>
                                     <field name="dermopatia"/>
-                                    <field name="hiperlipoproteinemia"/>
+                                    <field name="hiperlipoproteinemia_c"/>
                                     <field name="neuropatia_autonomica"/>
                                     <field name="otras_complicaciones"/>
-                                    <field name="hipertension_arterial"/>    
+                                    <field name="hipertension_arterial_c"/>    
                                 </group>
                                 <group>
                                   <p>
@@ -522,7 +540,7 @@
                             </form>
                           </page>
                           <!--HOJA 5-->
-                          <page name="hist_clinic_5" string="Historia Clínica(hoja: 5)">
+                          <page name="hist_clinic_5" string="Hoja: 5">
                             <form>
                               <group>
                                 <th>
@@ -558,6 +576,10 @@
                 </field>
               </page>
             </notebook>
+          <footer>
+              <button name="cerrar_curso" type="object" string="Terminar curso" class="btn-primary" confirm="¿Está seguro que desea cerrar el curso?"/>
+              <!-- <button name="confirmar_registro" type="object" string="Confirmar" class="btn-primary"/> -->
+          </footer>
           </sheet>
         </form>
       </field>
@@ -580,7 +602,97 @@
     <!--Crear la funcion para que funcione-->
     <!-- FORMULARIO MOVIMIENTO HOSPITALARIO -->
     <!-- HOJA DE EGRESO-->
-    
+    <record id="cad_hoja_egreso_form" model="ir.ui.view">
+      <field name="name">cad.prog.turno.form</field>
+      <field name="model">cad.prog.turno</field>
+      <field name="arch" type="xml">
+        <form string="Registro de Egresados">
+          <header>
+              <!-- <button name="envborrad" type="object" string="Enviar Borrador" class="btn-primary" states="open"/> -->
+              <field name="state" widget="statusbar" />
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <group>
+                <th>
+                  <h6>Mod. 54-36-1</h6>
+                  <h6>Ministerio de Salud Pública</h6>
+                  <h6>HISTORIA CLÍNICA DE DIABETES MELLITUS</h6>
+                </th>
+              </group>
+              <label for="no_folio" class="oe_edit_only"/>
+              <h2>
+                <field name="no_folio" required="1" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+              </h2>
+            </div>
+            <group>
+              <group >
+                <field name="fecha_inicio" placeholder="Inicio del Curso" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="fecha_fin" placeholder="Fin del Curso" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+              </group>
+            </group>
+            <notebook>
+              <page name="listadop_egreso" string="HOJA DE EGRESOS">
+                <field name="datos_reg_ids">
+                  <tree create="0" delete="0">
+                    <!--Crear el metodo para confirmar-->
+                    <!-- <field name="state" type="object" invisible="1" widget="badge" decoration-success="state == 'open'" string="En estado"/> -->
+                    <field name="historia_clinica"/>
+                    <!--Datos Carnet De Identidad-->
+                    <field name="carnet_identidad" /> 
+                    <field name="nombre_apellidos_id"/>
+                    <field name="primer_apellido"/>
+                    <field name="segundo_apellido"/>
+                    <field name="sexo" />
+                    <field name="color_piel"/>
+                    <field name="edad_actual"/>
+                    <!--Datos área salud-->
+                    <field name="remitido" />
+                    <field name="area_salud" />  
+                    <field name="consultorio_medico"/>
+                    <!--Datos escolaridad-->
+                    <field name="escolaridad"/>
+                    <field name="ocupacion" optional="hide"/>
+                    <!--Dirección-->
+                    <field name="calle" optional="hide"/>
+                    <field name="numero" optional="hide"/>
+                    <field name="entre_calles" optional="hide"/>
+                    <field name="ciudad_o_pueblo" optional="hide"/>
+                    <field name="provincia" optional="hide"/>
+                    <!--Datos del acompañante-->
+                    <field name="nombre_apellidos_acomp" optional="hide"/>
+                    <field name="direccion_acomp" optional="hide"/>
+                    <field name="telefono_acomp" optional="hide" widget="phone"/>    
+                    <!-- <button name="confir_historia_clinic" type="object" string="Confirm" state_hist_clinic="confir" class="btn-primary" />
+                    <button name="cancel_historia_clinic" type="object" string="Cancel" state_hist_clinic="cancel" class="btn btn-danger" />
+                    <field name="state_hist_clinic" type="object" invisible="0" widget="badge" decoration-success="state_hist_clinic == 'confir'" decoration-danger="state_hist_clinic =='cancel'" decoration-muted="state_hist_clinic=='confirme'" string="Tipo Estado"/> -->
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          <footer>
+              <!-- <button name="cerrar_curso" type="object" string="Terminar curso" class="btn-primary" confirm="¿Está seguro que desea cerrar el curso?"/> -->
+              <!-- <button name="confirmar_registro" type="object" string="Confirmar" class="btn-primary"/> -->
+          </footer>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="mov_hospitalario_2" model="ir.actions.act_window">
+      <field name="name">Hojas de Egreso</field>
+      <field name="res_model">cad.prog.turno</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('state', '=','confirm')]</field>
+      <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('cad_prog_turno_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('cad_hoja_egreso_form')})]"/>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Registro de Egreso
+          </p> 
+      </field>    
+    </record>    
 
     <!-- Formulario del Historia Clinica-->
   </data>
